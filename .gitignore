@@ -1,0 +1,31 @@
+# Środowisko i sekrety
+.env
+.env.*
+!.env.example
+
+# Zbiory danych i duże zrzuty baz (dump)
+instacart.dump
+*.dump
+data/
+
+# Pliki tymczasowe / robocze SQL
+sql/try.sql
+sql/monitor.sql
+sql/exercises/
+
+# Środowisko wirtualne i cache Pythona
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Jupyter Notebooks (pliki tymczasowe autozapisu)
+.ipynb_checkpoints/
+
+# Edytor VS Code
+.vscode/
+
+# Pliki systemowe
+Thumbs.db
+.DS_Store
