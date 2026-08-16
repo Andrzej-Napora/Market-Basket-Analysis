@@ -11,6 +11,7 @@ services:
             - instacart_network
         volumes: 
             - instacart_postgres_data:/var/lib/postgresql
+            - ./backup:/backup
     jupyter:
         build: .
         image: instacart_jupyter
