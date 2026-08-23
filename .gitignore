@@ -9,9 +9,7 @@ instacart.dump
 data/
 
 # Pliki tymczasowe / robocze SQL
-sql/try.sql
-sql/monitor.sql
-sql/exercises/
+sql/
 
 # Środowisko wirtualne i cache Pythona
 __pycache__/
