@@ -1,0 +1,14 @@
+models:
+  - name: int_user_order_summary
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - unique
+      - name: total_prior_orders
+        data_tests:
+          - not_null
+      - name: last_prior_order_number
+        data_tests:
+          - not_null
+

@@ -1,0 +1,16 @@
+models:
+  - name: int_user_product_count_summary
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - unique
+      - name: unique_products_purchased
+        data_tests:
+          - not_null
+      - name: unique_reordered_products
+        data_tests:
+          - not_null
+      - name: unique_product_reorder_rate_percent
+        data_tests:
+          - not_null

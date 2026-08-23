@@ -1,0 +1,7 @@
+models:
+  - name: int_prod_avg_days_since_prior_order
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - unique

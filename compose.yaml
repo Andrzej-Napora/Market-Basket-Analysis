@@ -1,9 +1,10 @@
 services:
     postgres:
         image: postgres
+        shm_size: "8gb"
         environment: 
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            POSTGRES_USER: $POSTGRES_USER}
+            POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_DB: ${POSTGRES_DB}
         ports:
             - "5432:5432"
@@ -13,7 +14,9 @@ services:
             - instacart_postgres_data:/var/lib/postgresql
             - ./backup:/backup
     jupyter:
-        build: .
+        build:
+            context: .
+            dockerfile: dockerfile.jupyter
         image: instacart_jupyter
         ports:
             - "8888:8888"
@@ -21,6 +24,23 @@ services:
             - instacart_network
         volumes:
             - ./notebooks:/home/jovyan/work
+    dbt:
+        build:
+            context: .
+            dockerfile: dockerfile.dbt
+        image: instacart_dbt
+        environment: 
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_DB: ${POSTGRES_DB}
+        networks:
+            - instacart_network
+        working_dir: /app/dbt
+        volumes: 
+            - ./dbt:/app/dbt
+            - ./dbt_profiles:/root/.dbt
+        depends_on:
+            - postgres
 volumes:
     instacart_postgres_data:
         external: true

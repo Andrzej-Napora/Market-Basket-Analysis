@@ -1,0 +1,50 @@
+[0m15:46:25.335480 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7caa10368dd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7caa1203c860>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7caa1284a870>]}
+
+
+============================== 15:46:25.340410 | baa23ca3-9535-4cad-b593-375960cd6808 ==============================
+[0m15:46:25.340410 [info ] [MainThread]: Running with dbt=1.12.2
+[0m15:46:25.341370 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/root/.dbt', 'debug': 'False', 'hints_enabled': 'True', 'log_path': 'logs', 'version_check': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'maximum_seed_size_mib': '1', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'partial_parse': 'True', 'no_print': 'None', 'log_cache_events': 'False', 'fail_fast': 'False', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'write_json': 'True', 'empty': 'None', 'printer_width': '80', 'introspect': 'True', 'invocation_command': 'dbt init instacart', 'target_path': 'None'}
+[0m15:46:25.347801 [debug] [MainThread]: Starter project path: /usr/local/lib/python3.12/site-packages/dbt/include/starter_project
+[0m15:46:25.424909 [info ] [MainThread]: Setting up your profile.
+[0m15:46:59.590617 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+[Errno 20] Not a directory: '/root/.dbt/profiles.yml'
+[0m15:46:59.592621 [error] [MainThread]: Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/dbt/cli/requires.py", line 198, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/dbt/cli/requires.py", line 144, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/dbt/cli/main.py", line 504, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/dbt/task/init.py", line 363, in run
+    self.setup_profile(profile_name)
+  File "/usr/local/lib/python3.12/site-packages/dbt/task/init.py", line 265, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "/usr/local/lib/python3.12/site-packages/dbt/task/init.py", line 182, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/usr/local/lib/python3.12/site-packages/dbt/task/init.py", line 169, in create_profile_from_profile_template
+    self.write_profile(profile, profile_name)
+  File "/usr/local/lib/python3.12/site-packages/dbt/task/init.py", line 159, in write_profile
+    with open(profiles_filepath, "w") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NotADirectoryError: [Errno 20] Not a directory: '/root/.dbt/profiles.yml'
+
+[0m15:46:59.594169 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 34.309387, "process_in_blocks": "2", "process_kernel_time": 0.128341, "process_mem_max_rss": "118228", "process_out_blocks": "2064", "process_user_time": 0.89037}
+[0m15:46:59.595225 [debug] [MainThread]: Command `dbt init` failed at 15:46:59.595109 after 34.31 seconds
+[0m15:46:59.596094 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7caa10d78890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7caa1036b410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7caa1035cc50>]}
+[0m15:46:59.596906 [debug] [MainThread]: Flushing usage events
+[0m15:47:00.239098 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:50:28.576775 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7389589d2ae0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x738958a462d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x738958a46150>]}
+
+
+============================== 15:50:28.581143 | 9b919ff9-8bde-45f6-be90-dfa9a2d6597e ==============================
+[0m15:50:28.581143 [info ] [MainThread]: Running with dbt=1.12.2
+[0m15:50:28.582035 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'hints_enabled': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'fail_fast': 'False', 'version_check': 'True', 'log_cache_events': 'False', 'empty': 'None', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'profiles_dir': '/root/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'invocation_command': 'dbt init instacart', 'introspect': 'True', 'cache_selected_only': 'False', 'printer_width': '80', 'target_path': 'None', 'no_print': 'None', 'debug': 'False', 'maximum_seed_size_mib': '1', 'write_json': 'True', 'log_format': 'default', 'partial_parse': 'True'}
+[0m15:50:28.588614 [info ] [MainThread]: A project called instacart already exists here.
+[0m15:50:28.589738 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 0.060184926, "process_in_blocks": "0", "process_kernel_time": 0.096552, "process_mem_max_rss": "114016", "process_out_blocks": "2064", "process_user_time": 0.897136}
+[0m15:50:28.590403 [debug] [MainThread]: Command `dbt init` succeeded at 15:50:28.590325 after 0.06 seconds
+[0m15:50:28.590910 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73895988eb40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7389589f6c90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x738958a89e80>]}
+[0m15:50:28.591513 [debug] [MainThread]: Flushing usage events
+[0m15:50:29.119525 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -25,17 +25,18 @@ CREATE TABLE raw.order_products_prior (
     reordered integer
 );
 
-copy raw.order_products_prior
+
+copy raw.order_products__prior
 from '/tmp/order_products__prior.csv'
 with(
     format csv,
     header true
 )
 
-select * from raw.order_products_prior limit 10
+select * from raw.order_products__prior limit 10
 
 
-select count(*) from raw.order_products_prior limit 10
+select count(*) from raw.order_products__prior limit 10
 
 
 create table raw.aisles(
@@ -60,14 +61,14 @@ create table raw.order_products_train
     reordered integer
 )
 
-copy raw.order_products_train
+copy raw.order_products__train
 from '/tmp/order_products__train.csv'
 with(
     format csv,
     header true
 )
 
-select count(*) from raw.order_products_train limit 10
+select count(*) from raw.order_products__train limit 10
 
 create table raw.orders(
     order_id integer,
@@ -113,7 +114,7 @@ select
     count(*) filter (where product_id is null) as missing_product_id,
     count(*) filter (where add_to_cart_order is null) as missing_cart_order,
     count(*) filter (where reordered is null) as reordered
-from raw.order_products_prior
+from raw.order_products__prior
 limit 100
 
 select 
@@ -127,7 +128,7 @@ select
     count(*) filter (where product_id is null)as missing_product_id,
     count(*) filter (where add_to_cart_order is null)as missing_add_to_cart_order,
     count(*) filter (where reordered is null)as missing_reordered
-from raw.order_products_train
+from raw.order_products__train
 limit 100
 
 select
@@ -688,8 +689,6 @@ ANALYZE analytics.user_product_model_features;
 
 
 
-
-
 DROP TABLE IF EXISTS analytics.reorder_features;
 
 CREATE TABLE analytics.reorder_features AS
@@ -701,6 +700,8 @@ SELECT
 
     d.department_id,
     d.department,
+
+    p.aisle_id,
 
     rt.target,
 

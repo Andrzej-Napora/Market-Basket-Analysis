@@ -1,0 +1,10 @@
+models:
+  - name: stg_aisles
+    columns:
+      - name: aisle_id
+        data_tests:
+          - not_null
+          - unique
+      - name: aisle
+        data_tests:
+          - not_null

@@ -1,0 +1,9 @@
+models:
+  - name: int_user_aisle_reordered_rate
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: product_id
+        data_tests:
+          - not_null

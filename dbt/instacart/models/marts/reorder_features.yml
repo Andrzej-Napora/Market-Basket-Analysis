@@ -1,0 +1,60 @@
+models:
+  - name: reorder_features
+    columns:
+      - name: user_id
+        data_tests:
+         - not_null
+      - name: product_id
+        data_tests:
+         - not_null
+      - name: product_name
+        data_tests:
+         - not_null
+      - name: department_id
+        data_tests:
+         - not_null
+      - name: department
+        data_tests:
+         - not_null
+      - name: target
+        data_tests:
+         - not_null
+      - name: user_product_purchase_count
+        data_tests:
+         - not_null
+      - name: product_purchases_per_order
+        data_tests:
+         - not_null
+      - name: total_prior_orders
+        data_tests:
+         - not_null
+      - name: total_product_purchases
+        data_tests:
+         - not_null
+      - name: avg_basket_size
+        data_tests:
+         - not_null
+      - name: user_reorder_rate_percent
+        data_tests:
+         - not_null
+      - name: unique_products_purchased
+        data_tests:
+         - not_null
+      - name: unique_reordered_products
+        data_tests:
+         - not_null
+      - name: unique_product_reorder_rate_percent
+        data_tests:
+         - not_null
+      - name: last_product_order_number
+        data_tests:
+         - not_null
+      - name: orders_since_last_purchase
+        data_tests:
+         - not_null
+      - name: products_since_last_purchase
+        data_tests:
+         - not_null
+      - name: avg_product_cart_position
+        data_tests:
+         - not_null

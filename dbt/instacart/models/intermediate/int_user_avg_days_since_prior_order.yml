@@ -1,0 +1,7 @@
+models:
+  - name: int_user_avg_days_since_prior_order
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - unique

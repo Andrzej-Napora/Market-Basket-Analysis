@@ -1,0 +1,16 @@
+models:
+  - name: int_products_per_order
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: order_number
+        data_tests:
+          - not_null
+      - name: basket_size
+        data_tests:
+          - not_null

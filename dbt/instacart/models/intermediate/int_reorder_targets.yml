@@ -1,0 +1,12 @@
+models:
+  - name: int_reorder_targets
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: target
+        data_tests:
+          - not_null

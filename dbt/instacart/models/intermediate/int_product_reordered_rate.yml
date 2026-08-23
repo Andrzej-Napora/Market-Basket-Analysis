@@ -1,0 +1,7 @@
+models:
+  - name: int_product_reordered_rate
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - unique

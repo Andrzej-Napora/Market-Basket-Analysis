@@ -1,0 +1,24 @@
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+          - unique
+      - name: user_id
+        data_tests:
+          - not_null
+      - name: eval_set
+        data_tests:
+              - accepted_values:
+                  arguments: 
+                    values: ['prior', 'train', 'test']
+      - name: order_number
+        data_tests:
+          - not_null
+      - name: order_dow
+        data_tests:
+          - not_null
+      - name: order_hour_of_day
+        data_tests:
+          - not_null
