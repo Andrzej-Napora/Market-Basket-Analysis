@@ -7,13 +7,7 @@ models:
       - name: product_id
         data_tests:
          - not_null
-      - name: product_name
-        data_tests:
-         - not_null
       - name: department_id
-        data_tests:
-         - not_null
-      - name: department
         data_tests:
          - not_null
       - name: target

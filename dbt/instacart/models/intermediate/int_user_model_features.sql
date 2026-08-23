@@ -1,6 +1,8 @@
 SELECT
     uos.user_id,
 
+    o.days_since_prior_order,
+
     uos.total_prior_orders,
 
     ups.total_product_purchases,
@@ -34,3 +36,8 @@ left JOIN {{ref('int_user_product_count_summary')}} AS upcs
 
 left JOIN {{ref('int_user_avg_days_since_prior_order')}} AS uadspo
     ON uos.user_id = uadspo.user_id
+
+JOIN {{ ref('stg_orders') }} AS o
+    ON o.user_id = uos.user_id
+    AND o.order_number = uos.last_prior_order_number
+    AND o.eval_set = 'prior'

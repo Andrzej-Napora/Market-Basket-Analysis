@@ -2,6 +2,8 @@ SELECT
     ups.user_id,
     ups.product_id,
 
+    p.aisle_id,
+
     ups.user_product_purchase_count,
 
     ups.last_product_order_number,
@@ -30,15 +32,17 @@ SELECT
 
     upadspo.user_product_stddev_days_since_prior_order,
 
-    uprr.user_product_reordered_rate,
-
     poip.percentage_of_orders_including_product,
 
     uarr.user_aisle_reordered_rate,
 
     arr.aisle_reordered_rate,
 
-    drr.department_reordered_rate
+    drr.department_reordered_rate,
+
+    udrr.user_department_reordered_rate,
+
+    uprr.user_product_reordered_rate
 
 
 FROM {{ref('int_user_product_summary')}} AS ups
@@ -82,21 +86,22 @@ left JOIN {{ref('int_user_product_reordered_rate')}} AS uprr
     AND ups.product_id = uprr.product_id
 
 left JOIN {{ref('int_percentage_of_orders_including_product')}} AS poip
-    ON ups.user_id = uprr.user_id
-    AND ups.product_id = uprr.product_id
+    ON ups.user_id = poip.user_id
+    AND ups.product_id = poip.product_id
+
+left JOIN {{ref('stg_products')}} AS p
+     on ups.product_id = p.product_id
 
 left JOIN {{ref('int_user_aisle_reordered_rate')}} AS uarr
     ON ups.user_id = uarr.user_id AND
-     ups.product_id = uarr.product_id
+     p.aisle_id = uarr.aisle_id
 
 left JOIN {{ref('int_user_department_reordered_rate')}} AS udrr
     ON ups.user_id = udrr.user_id AND
-     ups.product_id = udrr.product_id
+     p.department_id = udrr.department_id
 
 left JOIN {{ref('int_aisle_reordered_rate')}} AS arr
-    ON ups.user_id = arr.user_id AND
-     ups.product_id = arr.product_id
+    ON p.aisle_id = arr.aisle_id
 
 left JOIN {{ref('int_department_reordered_rate')}} AS drr
-    ON ups.user_id = drr.user_id AND
-     ups.product_id = drr.product_id
+    ON p.department_id = drr.department_id

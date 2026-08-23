@@ -2,9 +2,17 @@ SELECT
     upmf.user_id,
     upmf.product_id,
 
+    upmf.aisle_id,
+
+    upmf.aisle_reordered_rate,
+
     d.department_id,
 
+    upmf.department_reordered_rate,
+
     rt.target,
+
+    umf.days_since_prior_order,
 
     ROUND(
         (
@@ -17,6 +25,8 @@ SELECT
     umf.total_prior_orders,
 
     umf.total_product_purchases,
+
+    umf.total_reordered_purchases,
 
     ROUND(
         umf.avg_basket_size::NUMERIC,
@@ -53,7 +63,7 @@ SELECT
     ) AS user_stddev_days_since_prior_order,
 
     ROUND(
-        umf.user_department_reordered_rate::NUMERIC,
+        upmf.user_department_reordered_rate::NUMERIC,
         2
     ) AS user_department_reordered_rate,
 
@@ -70,7 +80,7 @@ SELECT
     upmf.orders_since_last_purchase,
 
     upmf.products_since_last_purchase,
-    
+
     upmf.user_product_reordered_rate,
 
     ROUND(
