@@ -6,10 +6,12 @@
 # Zbiory danych i duże zrzuty baz (dump)
 instacart.dump
 *.dump
-data/
+data/*
+!data/.gitkeep
 
-# Pliki tymczasowe / robocze SQL
-sql/
+# SQL: ignoruj wszystko poza skryptem importu
+/sql/*
+!/sql/raw_ingestion.sql
 
 # Środowisko wirtualne i cache Pythona
 __pycache__/
@@ -23,6 +25,12 @@ env/
 
 # Edytor VS Code
 .vscode/
+
+# Pliki generowane przez dbt
+/dbt/instacart/target/
+/dbt/instacart/logs/
+/dbt/instacart/dbt_packages/
+
 
 # Pliki systemowe
 Thumbs.db
