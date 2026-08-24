@@ -47,6 +47,19 @@ Copy the CSV files into the PostgreSQL container:
 Run the ./sql/raw_ingestion.sql script, then build the dbt project:
     docker compose run --rm dbt dbt build --project-dir "/app/dbt/instacart" --target dev
 
+# Connecting to PostgreSQL
+
+After starting the environment, create a PostgreSQL connection in VS Code, DBeaver, pgAdmin, or another database client.
+
+Use the following settings:
+
+Host: localhost
+Port: 5432
+Database: value of POSTGRES_DB from .env
+Username: value of POSTGRES_USER from .env
+Password: value of POSTGRES_PASSWORD from .env
+
+
 # Accessing JupyterLab
 
 JupyterLab is available at: http://localhost:8888
