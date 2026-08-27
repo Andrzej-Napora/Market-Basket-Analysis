@@ -1,3 +1,27 @@
+from sqlalchemy import create_engine
+import os
+
+postgres_user = os.getenv("POSTGRES_USER")
+postgres_password = os.getenv("POSTGRES_PASSWORD")
+postgres_db = os.getenv("POSTGRES_DB")
+
+
+engine = create_engine(f"postgresql+psycopg2://"
+                       f"{postgres_user}:"
+                       f"{postgres_password}"
+                       f"@localhost:5432/"
+                       f"{postgres_db}")
+
+
+with open("./sql/raw_ingestion.sql") as file:
+    query_string = file.read()
+
+
+
+query = f"""{query_string}"""
+"""
+create database instacart
+
 create schema raw;
 
 CREATE TABLE raw.departments (
@@ -86,3 +110,4 @@ with(
     format csv,
     header true
 );
+"""

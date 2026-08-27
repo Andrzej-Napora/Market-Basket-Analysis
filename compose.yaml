@@ -10,8 +10,32 @@ services:
             - instacart_network
         volumes: 
             - instacart_postgres_data:/var/lib/postgresql
+            - ./data/raw/:/data/:ro
+            - ./sql/:/sql/:ro
             - ./backup:/backup
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+            interval: 5s
+            timeout: 5s
+            retries: 5
+            start_period: 5s
+    data_ingest:
+    depends_on:
+        postgres:
+            condition: service_healthy
+        env_file:
+            - .env
+        build:
+            context: .
+            dockerfile: scripts/dockerfile.raw_ingestion
+        networks:
+            - instacart_natwork
+        volumes:
+            - ./sql/:/sql/
     jupyter:
+        depends_on:
+            dbt:
+                condition: service_completed_successfully
         build:
             context: .
             dockerfile: dockerfile.jupyter
@@ -25,6 +49,9 @@ services:
         volumes:
             - ./notebooks:/home/jovyan/work
     dbt:
+        depends_on:
+            raw_ingestion:
+                condition: service_completed_successfully
         build:
             context: .
             dockerfile: dockerfile.dbt
@@ -37,8 +64,13 @@ services:
         volumes: 
             - ./dbt:/app/dbt
             - ./dbt_profiles:/root/.dbt
-        depends_on:
-            - postgres
+        command:
+            - dbt
+            - build
+            - --project-dir
+            - "/app/dbt/instacart"
+            - --target
+            - dev
 volumes:
     instacart_postgres_data:
         external: true
