@@ -6,7 +6,7 @@ postgres_user = os.getenv("POSTGRES_USER")
 postgres_password = os.getenv("POSTGRES_PASSWORD")
 postgres_db = os.getenv("POSTGRES_DB")
 
-sql_path = Path("./sql/raw_ingestion.sql")
+sql_path = Path("/sql/raw_ingestion.sql")
 query_string = sql_path.read_text(encoding="utf-8")
 
 with psycopg2.connect(database = postgres_db, 

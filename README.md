@@ -41,8 +41,9 @@ After download place CSV files into ./data/raw/ directory.
 You need to install docker desktop application
 
 Set your own PostgreSQL credentials in .env file based on .env.example,<br>
-then build and start the project:<br>
-    docker compose up --build
+then start the project:<br>
+    docker compose up
+need to be run in terminal in your project directory.
 
 Docker Compose will automatically:
 

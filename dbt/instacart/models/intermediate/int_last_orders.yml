@@ -1,5 +1,5 @@
 models:
-  - name: int_last_12_orders
+  - name: int_last_orders
     columns:
       - name: user_id
         data_tests:
@@ -7,6 +7,6 @@ models:
       - name: product_id
         data_tests:
           - not_null
-      - name: last_12_orders
+      - name: last_3_orders
         data_tests:
           - not_null
