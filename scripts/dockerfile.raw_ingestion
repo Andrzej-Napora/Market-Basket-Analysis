@@ -1,9 +1,7 @@
 FROM python:3.12-slim
 
-RUN pip install --no-cache-dir "psycopg[binary]"
+RUN pip install --no-cache-dir psycopg2-binary
 
-WORKDIR /app
+COPY ./scripts/raw_data_ingest.py scripts/raw_data_ingest.py
 
-COPY ./scripts/raw_ingestion_data.py app/raw_ingestion_data.py
-
-CMD ["python", "/app/raw_data_ingestion.py"]
+CMD ["python", "/scripts/raw_data_ingest.py"]

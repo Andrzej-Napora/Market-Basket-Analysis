@@ -13,6 +13,10 @@ services:
             - ./data/raw/:/data/:ro
             - ./sql/:/sql/:ro
             - ./backup:/backup
+        command:
+            - postgres
+            - -c
+            - max_wal_size=8GB
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
             interval: 5s
@@ -20,18 +24,18 @@ services:
             retries: 5
             start_period: 5s
     data_ingest:
-    depends_on:
-        postgres:
-            condition: service_healthy
         env_file:
             - .env
         build:
             context: .
             dockerfile: scripts/dockerfile.raw_ingestion
         networks:
-            - instacart_natwork
+            - instacart_network
         volumes:
             - ./sql/:/sql/
+        depends_on:
+            postgres:
+                condition: service_healthy
     jupyter:
         depends_on:
             dbt:
@@ -50,7 +54,7 @@ services:
             - ./notebooks:/home/jovyan/work
     dbt:
         depends_on:
-            raw_ingestion:
+            data_ingest:
                 condition: service_completed_successfully
         build:
             context: .
@@ -73,7 +77,6 @@ services:
             - dev
 volumes:
     instacart_postgres_data:
-        external: true
 networks:
     instacart_network:
-        external: true
+        driver: bridge
