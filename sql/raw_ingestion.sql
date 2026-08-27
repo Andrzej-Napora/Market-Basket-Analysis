@@ -1,4 +1,6 @@
+drop schema if exists raw cascade;
 create schema raw;
+
 
 CREATE TABLE raw.departments (
     department_id integer primary key,

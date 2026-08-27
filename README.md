@@ -34,18 +34,24 @@ The project uses the Instacart Market Basket Analysis dataset.
 The CSV files are not included in the repository because of their size. You can download it at: 
     https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis
 
-After download place CSV files into ./data/ directory.
+After download place CSV files into ./data/raw/ directory.
 
 # Running the project
 
-Create a .env file based on .env.example, then start the environment:
-    docker compose up
+You need to install docker desktop application
 
-Copy the CSV files into the PostgreSQL container:
-    docker compose cp "./data/." postgres:/tmp/
+Set your own PostgreSQL credentials in .env file based on .env.example,<br>
+then build and start the project:<br>
+    docker compose up --build
 
-Run the ./sql/raw_ingestion.sql script, then build the dbt project:
-    docker compose run --rm dbt dbt build --project-dir "/app/dbt/instacart" --target dev
+Docker Compose will automatically:
+
+1. start PostgreSQL<br>
+2. create and populate the raw tables<br>
+3. build and test the dbt models<br>
+4. start JupyterLab after the pipeline completes successfully<br>
+
+The first run may take a significant amount of time because the database and all dbt models are built from scratch.
 
 # Connecting to PostgreSQL
 
@@ -71,6 +77,15 @@ or search these line in:
     docker compose logs jupyter
 
 you can either copy token from lines above into http://localhost:8888, or copy one of these URLs into your browser.
+
+
+# Stopping container
+
+To stop container use:<br>
+    docker compose down
+
+This preserves the PostgreSQL volume. To remove the database and rebuild the project completely from scratch, use:
+    docker compose down -v
 
 
 # Machine learning
