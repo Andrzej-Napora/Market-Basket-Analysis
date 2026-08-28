@@ -6,8 +6,11 @@
 # Zbiory danych i duże zrzuty baz (dump)
 instacart.dump
 *.dump
-data/*
-!data/.gitkeep
+
+# Zachowaj strukturę katalogu data, ignoruj jego zawartość
+/data/*
+!/data/raw/
+!/data/raw/.gitkeep
 
 # SQL: ignoruj wszystko poza skryptem importu
 /sql/*
