@@ -12,8 +12,6 @@ SELECT
 
     ppslp.products_since_last_purchase,
 
-    ups.avg_product_cart_position,
-
     coalesce(lo.last_3_orders,0) as last_3_orders,
 
     coalesce(lo.last_6_orders,0) as last_6_orders,

@@ -1,7 +1,6 @@
-drop schema if exists raw cascade;
 create schema raw;
 
-
+drop table if exists raw.departments;
 CREATE TABLE raw.departments (
     department_id integer primary key,
     department varchar(100)
@@ -14,7 +13,7 @@ with(
     header true
 );
 
-
+drop table if exists raw.order_products__prior;
 CREATE TABLE raw.order_products__prior (
     order_id integer,
     product_id integer,
@@ -30,7 +29,7 @@ with(
     header true
 );
 
-
+drop table if exists raw.aisles;
 create table raw.aisles(
     aisle_id integer,
     aisle varchar(100)
@@ -43,6 +42,7 @@ with(
     header true
 );
 
+drop table if exists raw.order_products__train;
 create table raw.order_products__train
 (
     order_id integer,
@@ -58,6 +58,7 @@ with(
     header true
 );
 
+drop table if exists raw.orders;
 create table raw.orders(
     order_id integer,
     user_id integer,
@@ -75,6 +76,7 @@ with(
     header true
 );
 
+drop table if exists raw.products;
 create table raw.products(
     product_id integer,
     product_name varchar(300),

@@ -1,12 +1,21 @@
 models:
   - name: int_reorder_targets
     columns:
-      - name: product_id
-        data_tests:
-          - not_null
       - name: user_id
         data_tests:
           - not_null
+
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+
       - name: target
         data_tests:
           - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]

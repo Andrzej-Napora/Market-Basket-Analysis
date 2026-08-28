@@ -84,11 +84,6 @@ SELECT
     upmf.user_product_reordered_rate,
 
     ROUND(
-        upmf.avg_product_cart_position::NUMERIC,
-        2
-    ) AS avg_product_cart_position,
-
-    ROUND(
         upmf.last_3_orders::NUMERIC,
         2
     ) AS last_3_orders,

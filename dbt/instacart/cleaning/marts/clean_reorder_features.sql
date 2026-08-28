@@ -1,4 +1,4 @@
-select * from analytics.reorder_features limit 100;
+select * from dbt_dev.reorder_features limit 100;
 
 
 
@@ -25,4 +25,18 @@ orders_since_last_purchase is null
 limit 100;
 
 
+select
+user_id,
+product_id,
+count(*) is_unique
+from dbt_dev.reorder_features
+group by user_id,
+product_id
+having count(*)>1
+limit 100
+
+select *
+from dbt_dev.reorder_features
+where target not in (0,1)
+limit 100
 

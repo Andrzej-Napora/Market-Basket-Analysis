@@ -1,12 +1,14 @@
 models:
   - name: int_products_purchased_since_last_purchase
     columns:
-      - name: product_id
-        data_tests:
-          - not_null
       - name: user_id
         data_tests:
           - not_null
+
+      - name: product_id
+        data_tests:
+          - not_null
+
       - name: products_since_last_purchase
         data_tests:
           - not_null

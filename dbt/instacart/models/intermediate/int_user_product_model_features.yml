@@ -4,21 +4,43 @@ models:
       - name: user_id
         data_tests:
           - not_null
+
       - name: product_id
         data_tests:
           - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+
       - name: user_product_purchase_count
         data_tests:
           - not_null
+
       - name: last_product_order_number
         data_tests:
           - not_null
+
       - name: orders_since_last_purchase
         data_tests:
           - not_null
+
       - name: products_since_last_purchase
         data_tests:
           - not_null
-      - name: avg_product_cart_position
+
+      - name: last_3_orders
+        data_tests:
+          - not_null
+
+      - name: last_6_orders
+        data_tests:
+          - not_null
+
+      - name: last_9_orders
+        data_tests:
+          - not_null
+
+      - name: last_12_orders
         data_tests:
           - not_null

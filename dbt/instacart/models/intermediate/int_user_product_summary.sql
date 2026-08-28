@@ -4,10 +4,8 @@ SELECT
 
     COUNT(opp.product_id) AS user_product_purchase_count,
 
-    MAX(o.order_number) AS last_product_order_number,
+    MAX(o.order_number) AS last_product_order_number
 
-    AVG(opp.add_to_cart_order)
-        AS avg_product_cart_position
 
 FROM {{ref('stg_orders')}} AS o
 

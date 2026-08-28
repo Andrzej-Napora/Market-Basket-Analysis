@@ -4,3 +4,7 @@ models:
       - name: department_id
         data_tests:
           - not_null
+          - unique
+      - name: department_reordered_rate
+        data_tests:
+          - not_null

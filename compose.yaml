@@ -53,28 +53,20 @@ services:
         volumes:
             - ./notebooks:/home/jovyan/work
     dbt:
-        depends_on:
-            data_ingest:
-                condition: service_completed_successfully
         build:
             context: .
             dockerfile: dockerfile.dbt
         image: instacart_dbt
         env_file:
             - .env
+        depends_on:
+            data_ingest:
+                condition: service_completed_successfully
         networks:
             - instacart_network
-        working_dir: /app/dbt
-        volumes: 
+        volumes:
             - ./dbt:/app/dbt
             - ./dbt_profiles:/root/.dbt
-        command:
-            - dbt
-            - build
-            - --project-dir
-            - "/app/dbt/instacart"
-            - --target
-            - dev
 volumes:
     instacart_postgres_data:
 networks:

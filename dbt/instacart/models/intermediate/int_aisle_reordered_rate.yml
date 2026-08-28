@@ -4,3 +4,7 @@ models:
       - name: aisle_id
         data_tests:
           - not_null
+          - unique
+      - name: aisle_reordered_rate
+        data_tests:
+          - not_null
