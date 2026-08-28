@@ -22,6 +22,7 @@ env/
 
 # Jupyter Notebooks (pliki tymczasowe autozapisu)
 .ipynb_checkpoints/
+/notebooks/models/random_forest.joblib
 
 # Edytor VS Code
 .vscode/
